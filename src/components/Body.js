@@ -9,7 +9,6 @@ const Body = (props) => {
     //set state for content and setContent function
     const [content, setContent] = useState(null);
 
-    // **This is for local dev testing; switch to Heroku when done**
     const URL = "https://coteach-production.herokuapp.com/content/";
 
     // This function is used to get the data from the database. It will wait until it is completed and the set the state of the content with the returned data
@@ -53,12 +52,12 @@ const Body = (props) => {
                         user={props.user}
                     />
                 </Route>
-                
+
                 <Route path="/content/new">
-               {props.user ?
-                    <New
-                        createContent={createContent}
-                    />: <h1>You need to be logged in</h1>}
+                    {props.user ?
+                        <New
+                            createContent={createContent}
+                        /> : <h1>You need to be logged in</h1>}
                 </Route>
 
                 <Route

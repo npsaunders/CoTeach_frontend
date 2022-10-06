@@ -1,4 +1,4 @@
-import { useState,useEffect,Link } from 'react'
+import { useState, useEffect, Link } from 'react'
 import Notes from './Notes';
 
 
@@ -12,37 +12,37 @@ function Tabs(props) {
 
   ///////////////////////////////fetch notes 
   const [newNote, setNewNote] = useState(
-   null
+    null
   )
 
-  const notesURL = "http://localhost:4000/notes/"
+  const notesURL = "https://coteach-production.herokuapp.com/notes/"
 
   // This function is used to get the data from the database. It will wait until it is completed and the set the state of the content with the returned data
   const getNotes = async () => {
     const response = await fetch(notesURL);
     const data = await response.json();
     setNewNote(data);
-    
+
   }
-console.log( 'NewNote',newNote)
+  console.log('NewNote', newNote)
   //Initial render
   useEffect(() => {
     getNotes();
-}, []);
+  }, []);
 
-// loaded function
-const loaded = () => {
-  return newNote.map((note,index) => (
-    < div style={{textAlign:"left",fontSize:'20px',marginLeft:'5%'} }
-    >
-    <div key={index}></div>
-     <p><h3>Note #{index+1}</h3> {note.notes}</p></div>
-  ));
-};
-   // loading function...no props.content yet
-   const loading = () => {
+  // loaded function
+  const loaded = () => {
+    return newNote.map((note, index) => (
+      < div style={{ textAlign: "left", fontSize: '20px', marginLeft: '5%' }}
+      >
+        <div key={index}></div>
+        <p><h3>Note #{index + 1}</h3> {note.notes}</p></div>
+    ));
+  };
+  // loading function...no props.content yet
+  const loading = () => {
     return <h1>Loading...</h1>;
-};
+  };
   // If user is logged in, allow the tabs to be clicked
   const notesTabsEnabled = () => {
     return (
